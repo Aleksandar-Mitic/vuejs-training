@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Basic data binding</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <h2>All tasks</h2>
+        <task-list></task-list>
+    </div>
+
+
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script>
+
+        Vue.component('task-list', {
+            template: '<div><task v-for="task in tasks">{{ task.description }}</task></div>',
+            data() {
+                return {
+                    tasks: [
+                        { description: 'Go to the store', complete: true },
+                        { description: 'Go to the bank', complete: false },
+                        { description: 'Go to the school', complete: true },
+                        { description: 'Go to the post office', complete: false },
+                    ]
+                }
+            },
+        })
+
+
+        Vue.component('task', {
+            template: '<li><slot></slot></li>'
+        })
+
+        var app = new Vue({
+            el: '#app'
+        })
+
+    </script>
+
+
+</body>
+
+</html>
